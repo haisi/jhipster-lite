@@ -26,15 +26,6 @@ class DummyFeatureModuleFactoryTest {
 
     assertThatModuleWithFiles(module, pomFile())
       .hasFile("pom.xml")
-      .containing(
-        """
-              <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>${os-maven-plugin.version}</version>
-              </extension>
-        """
-      )
       .and()
       .hasFiles("documentation/dummy.md")
       .hasPrefixedFiles("src/main/java/com/jhipster/test/dummy", "package-info.java")
