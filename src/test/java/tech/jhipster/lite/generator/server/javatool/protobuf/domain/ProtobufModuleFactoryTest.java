@@ -148,6 +148,15 @@ class ProtobufModuleFactoryTest {
           alias(libs.plugins.protobuf)
           // jhipster-needle-gradle-plugins
         """
+      )
+      .containing(
+        """
+        protobuf {
+          protoc {
+            artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.asProvider().get()}"
+          }
+        }
+        """
       );
   }
 }

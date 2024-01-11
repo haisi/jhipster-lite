@@ -5,6 +5,7 @@ import static tech.jhipster.lite.module.domain.JHipsterModule.*;
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterDestination;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleCommunityPlugin;
 import tech.jhipster.lite.module.domain.javabuild.VersionSlug;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin.MavenPluginOptionalBuilder;
@@ -56,10 +57,27 @@ public class ProtobufModuleFactory {
         .addExtension(groupId("kr.motd.maven"), artifactId("os-maven-plugin"), versionSlug("os-maven-plugin"))
         .and()
       .gradlePlugins()
-        .plugin(gradleCommunityPlugin().id("com.google.protobuf").pluginSlug("protobuf").versionSlug("protobuf-plugin").build())
+        .plugin(protobufGradlePlugin())
         .and()
       .build();
     //@formatter:on
+  }
+
+  private static GradleCommunityPlugin protobufGradlePlugin() {
+    return gradleCommunityPlugin()
+      .id("com.google.protobuf")
+      .pluginSlug("protobuf")
+      .versionSlug("protobuf-plugin")
+      .configuration(
+        """
+        protobuf {
+          protoc {
+            artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.asProvider().get()}"
+          }
+        }
+        """
+      )
+      .build();
   }
 
   private MavenPlugin protobufMavenPluginManagement() {
