@@ -80,6 +80,7 @@ public enum JHLiteModuleSlug implements JHipsterModuleSlugFactory {
   PLAYWRIGHT("playwright"),
   POSTGRESQL("postgresql"),
   PRETTIER("prettier"),
+  PROTOBUF("protobuf"),
   REACT_CORE("react-core"),
   REACT_JWT("react-jwt"),
   REST_PAGINATION("rest-pagination"),
