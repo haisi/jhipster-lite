@@ -6,6 +6,7 @@ import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterDestination;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
 import tech.jhipster.lite.module.domain.gradleplugin.GradleCommunityPlugin;
+import tech.jhipster.lite.module.domain.javabuild.GroupId;
 import tech.jhipster.lite.module.domain.javabuild.VersionSlug;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin.MavenPluginOptionalBuilder;
@@ -19,7 +20,8 @@ public class ProtobufModuleFactory {
   private static final JHipsterSource TEST_SOURCE = SOURCE.append("test");
 
   private static final String PROTOBUF_PACKAGE = "shared/protobuf";
-  public static final VersionSlug PROTOBUF_VERSION_SLUG = versionSlug("protobuf");
+  private static final VersionSlug PROTOBUF_VERSION_SLUG = versionSlug("protobuf");
+  private static final GroupId PROTOBUF_GROUPID = groupId("com.google.protobuf");
 
   public JHipsterModule buildModule(JHipsterModuleProperties properties) {
     Assert.notNull("properties", properties);
@@ -44,8 +46,8 @@ public class ProtobufModuleFactory {
         )
         .and()
       .javaDependencies()
-        .addDependency(groupId("com.google.protobuf"), artifactId("protobuf-java"), PROTOBUF_VERSION_SLUG)
-        .addTestDependency(groupId("com.google.protobuf"), artifactId("protobuf-java-util"), PROTOBUF_VERSION_SLUG)
+        .addDependency(PROTOBUF_GROUPID, artifactId("protobuf-java"), PROTOBUF_VERSION_SLUG)
+        .addTestDependency(PROTOBUF_GROUPID, artifactId("protobuf-java-util"), PROTOBUF_VERSION_SLUG)
         .and()
       .mavenPlugins()
         .pluginManagement(protobufMavenPluginManagement())
