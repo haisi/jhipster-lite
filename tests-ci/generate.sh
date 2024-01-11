@@ -52,6 +52,7 @@ spring_boot() {
   "github-actions" \
   "java-base" \
   "checkstyle" \
+  "protobuf" \
   "jacoco-check-min-coverage" \
   "spring-boot" \
   "logs-spy"
