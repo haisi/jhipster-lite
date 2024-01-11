@@ -48,9 +48,9 @@ public class ProtobufModuleFactory {
         .and()
       .mavenPlugins()
         .pluginManagement(protobufMavenPluginManagement())
-        .plugin(protobufPluginBuilder().build())
-        .pluginManagement(protoBackwardsCompatibilityPluginManagement())
-        .plugin(protoBackwardsCompatibilityPluginBuilder().build())
+        .plugin(protobufMavenPluginBuilder().build())
+        .pluginManagement(protoBackwardsCompatibilityMavenPluginManagement())
+        .plugin(protoBackwardsCompatibilityMavenPluginBuilder().build())
         .and()
       .mavenBuildExtensions()
         .addExtension(groupId("kr.motd.maven"), artifactId("os-maven-plugin"), versionSlug("os-maven-plugin"))
@@ -63,7 +63,7 @@ public class ProtobufModuleFactory {
   }
 
   private MavenPlugin protobufMavenPluginManagement() {
-    return protobufPluginBuilder()
+    return protobufMavenPluginBuilder()
       .versionSlug("protobuf-maven-plugin")
       .configuration(
         """
@@ -74,18 +74,18 @@ public class ProtobufModuleFactory {
       .build();
   }
 
-  private MavenPluginOptionalBuilder protobufPluginBuilder() {
+  private MavenPluginOptionalBuilder protobufMavenPluginBuilder() {
     return javaBuildPlugin().groupId("org.xolstice.maven.plugins").artifactId("protobuf-maven-plugin");
   }
 
-  private MavenPlugin protoBackwardsCompatibilityPluginManagement() {
-    return protoBackwardsCompatibilityPluginBuilder()
+  private MavenPlugin protoBackwardsCompatibilityMavenPluginManagement() {
+    return protoBackwardsCompatibilityMavenPluginBuilder()
       .versionSlug("proto-backwards-compatibility")
       .addExecution(pluginExecution().goals("backwards-compatibility-check"))
       .build();
   }
 
-  private MavenPluginOptionalBuilder protoBackwardsCompatibilityPluginBuilder() {
+  private MavenPluginOptionalBuilder protoBackwardsCompatibilityMavenPluginBuilder() {
     return javaBuildPlugin().groupId("com.salesforce.servicelibs").artifactId("proto-backwards-compatibility");
   }
 }
