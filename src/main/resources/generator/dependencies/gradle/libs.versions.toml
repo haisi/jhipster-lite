@@ -1,6 +1,7 @@
 [versions]
 checkstyle = "10.12.7"
 jib = "3.4.0"
+protobuf-plugin = "0.9.4"
 
 [libraries]
 [libraries.checkstyle]
@@ -12,3 +13,7 @@ version.ref = "checkstyle"
 [plugins.jib]
 id = "com.google.cloud.tools.jib"
 version.ref = "jib"
+
+[plugins.protobuf]
+id = "com.google.cloud.tools.jib"
+version.ref = "protobuf-plugin"

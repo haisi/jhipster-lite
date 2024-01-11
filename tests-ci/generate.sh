@@ -117,6 +117,7 @@ elif [[ $application == 'gradleapp' ]]; then
     "java-memoizers" \
     "java-enums" \
     "jib" \
+    "protobuf" \
     "pagination-domain"
 
 elif [[ $application == 'fullapp' ]]; then

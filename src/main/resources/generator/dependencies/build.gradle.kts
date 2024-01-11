@@ -2,6 +2,7 @@ plugins {
   java
   checkstyle
   alias(libs.plugins.jib)
+  alias(libs.plugins.protobuf)
   // jhipster-needle-gradle-plugin
 }
 

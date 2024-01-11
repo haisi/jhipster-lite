@@ -55,6 +55,9 @@ public class ProtobufModuleFactory {
       .mavenBuildExtensions()
         .addExtension(mavenBuildExtension().groupId("kr.motd.maven").artifactId("os-maven-plugin").versionSlug("os-maven-plugin").build())
         .and()
+      .gradlePlugins()
+        .plugin(gradleCommunityPlugin().id("com.google.protobuf").pluginSlug("protobuf").versionSlug("protobuf-plugin").build())
+        .and()
       .build();
     //@formatter:on
   }

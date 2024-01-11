@@ -1,7 +1,7 @@
 package tech.jhipster.lite.generator.server.javatool.protobuf.domain;
 
-import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.assertThatModuleWithFiles;
-import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.pomFile;
+import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.*;
+import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.gradleLibsVersionFile;
 
 import org.junit.jupiter.api.Test;
 import tech.jhipster.lite.TestFileUtils;
@@ -16,7 +16,7 @@ class ProtobufModuleFactoryTest {
   private static final ProtobufModuleFactory factory = new ProtobufModuleFactory();
 
   @Test
-  void shouldBuildModule() {
+  void shouldBuildModuleForMaven() {
     JHipsterModuleProperties properties = JHipsterModulesFixture
       .propertiesBuilder(TestFileUtils.tmpDirForTest())
       .basePackage("com.jhipster.test")
@@ -118,6 +118,35 @@ class ProtobufModuleFactoryTest {
                 <groupId>com.salesforce.servicelibs</groupId>
                 <artifactId>proto-backwards-compatibility</artifactId>
               </plugin>
+        """
+      );
+  }
+
+  @Test
+  void shouldBuildModuleForGradle() {
+    JHipsterModuleProperties properties = JHipsterModulesFixture.propertiesBuilder(TestFileUtils.tmpDirForTest()).build();
+
+    JHipsterModule module = factory.buildModule(properties);
+
+    assertThatModuleWithFiles(module, gradleBuildFile(), gradleLibsVersionFile())
+      .hasFile("gradle/libs.versions.toml")
+      .containing("protobuf = \"")
+      .containing("protobuf-plugin = \"")
+      .containing(
+        """
+        \t[plugins.protobuf]
+        \t\tid = "com.google.protobuf"
+
+        \t\t[plugins.protobuf.version]
+        \t\t\tref = "protobuf-plugin"
+        """
+      )
+      .and()
+      .hasFile("build.gradle.kts")
+      .containing(
+        """
+          alias(libs.plugins.protobuf)
+          // jhipster-needle-gradle-plugins
         """
       );
   }
