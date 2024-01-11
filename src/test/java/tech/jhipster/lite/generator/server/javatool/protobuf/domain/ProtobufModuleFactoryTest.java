@@ -3,25 +3,17 @@ package tech.jhipster.lite.generator.server.javatool.protobuf.domain;
 import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.assertThatModuleWithFiles;
 import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.pomFile;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import tech.jhipster.lite.TestFileUtils;
 import tech.jhipster.lite.UnitTest;
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.JHipsterModulesFixture;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
-import tech.jhipster.lite.module.infrastructure.secondary.TestJHipsterModules;
 
 @UnitTest
 class ProtobufModuleFactoryTest {
 
   private static final ProtobufModuleFactory factory = new ProtobufModuleFactory();
-
-  @AfterAll
-  static void unregisterReaders() {
-    TestJHipsterModules.unregisterReaders();
-  }
 
   @Test
   void shouldBuildModule() {
