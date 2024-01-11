@@ -53,7 +53,7 @@ public class ProtobufModuleFactory {
         .plugin(protoBackwardsCompatibilityPluginBuilder().build())
         .and()
       .mavenBuildExtensions()
-        .addExtension(mavenBuildExtension().groupId("kr.motd.maven").artifactId("os-maven-plugin").versionSlug("os-maven-plugin").build())
+        .addExtension(groupId("kr.motd.maven"), artifactId("os-maven-plugin"), versionSlug("os-maven-plugin"))
         .and()
       .gradlePlugins()
         .plugin(gradleCommunityPlugin().id("com.google.protobuf").pluginSlug("protobuf").versionSlug("protobuf-plugin").build())
