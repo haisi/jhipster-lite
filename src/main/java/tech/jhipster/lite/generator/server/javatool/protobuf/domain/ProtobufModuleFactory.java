@@ -49,6 +49,8 @@ public class ProtobufModuleFactory {
       .mavenPlugins()
         .pluginManagement(protobufMavenPluginManagement())
         .plugin(protobufPluginBuilder().build())
+        .pluginManagement(protoBackwardsCompatibilityPluginManagement())
+        .plugin(protoBackwardsCompatibilityPluginBuilder().build())
         .and()
       .mavenBuildExtensions()
         .addExtension(mavenBuildExtension().groupId("kr.motd.maven").artifactId("os-maven-plugin").versionSlug("os-maven-plugin").build())
@@ -71,5 +73,16 @@ public class ProtobufModuleFactory {
 
   private MavenPluginOptionalBuilder protobufPluginBuilder() {
     return javaBuildPlugin().groupId("org.xolstice.maven.plugins").artifactId("protobuf-maven-plugin");
+  }
+
+  private MavenPlugin protoBackwardsCompatibilityPluginManagement() {
+    return protoBackwardsCompatibilityPluginBuilder()
+      .versionSlug("proto-backwards-compatibility")
+      .addExecution(pluginExecution().goals("backwards-compatibility-check"))
+      .build();
+  }
+
+  private MavenPluginOptionalBuilder protoBackwardsCompatibilityPluginBuilder() {
+    return javaBuildPlugin().groupId("com.salesforce.servicelibs").artifactId("proto-backwards-compatibility");
   }
 }

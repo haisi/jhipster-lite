@@ -56,6 +56,7 @@
     <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
     <protobuf.version>3.23.3</protobuf.version>
     <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
+    <proto-backwards-compatibility.version>1.0.7</proto-backwards-compatibility.version>
   </properties>
 
   <dependencyManagement>
@@ -316,6 +317,11 @@
         <groupId>org.xolstice.maven.plugins</groupId>
         <artifactId>protobuf-maven-plugin</artifactId>
         <version>${protobuf-maven-plugin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.salesforce.servicelibs</groupId>
+        <artifactId>proto-backwards-compatibility</artifactId>
+        <version>${proto-backwards-compatibility.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -95,6 +95,30 @@ class ProtobufModuleFactoryTest {
               </extension>
             </extensions>
         """
+      )
+      .containing(
+        """
+                <plugin>
+                  <groupId>com.salesforce.servicelibs</groupId>
+                  <artifactId>proto-backwards-compatibility</artifactId>
+                  <version>${proto-backwards-compatibility.version}</version>
+                  <executions>
+                    <execution>
+                      <goals>
+                        <goal>backwards-compatibility-check</goal>
+                      </goals>
+                    </execution>
+                  </executions>
+                </plugin>
+        """
+      )
+      .containing(
+        """
+              <plugin>
+                <groupId>com.salesforce.servicelibs</groupId>
+                <artifactId>proto-backwards-compatibility</artifactId>
+              </plugin>
+        """
       );
   }
 }
