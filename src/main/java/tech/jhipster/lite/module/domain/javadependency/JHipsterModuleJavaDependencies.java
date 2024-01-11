@@ -1,5 +1,7 @@
 package tech.jhipster.lite.module.domain.javadependency;
 
+import static tech.jhipster.lite.module.domain.javadependency.JavaDependencyScope.TEST;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Function;
@@ -120,6 +122,18 @@ public class JHipsterModuleJavaDependencies {
 
     public JHipsterModuleJavaDependenciesBuilder addDependency(GroupId groupId, ArtifactId artifactId, VersionSlug versionSlug) {
       JavaDependency dependency = JavaDependency.builder().groupId(groupId).artifactId(artifactId).versionSlug(versionSlug).build();
+
+      return addDependency(dependency);
+    }
+
+    public JHipsterModuleJavaDependenciesBuilder addTestDependency(GroupId groupId, ArtifactId artifactId, VersionSlug versionSlug) {
+      JavaDependency dependency = JavaDependency
+        .builder()
+        .groupId(groupId)
+        .artifactId(artifactId)
+        .versionSlug(versionSlug)
+        .scope(TEST)
+        .build();
 
       return addDependency(dependency);
     }
