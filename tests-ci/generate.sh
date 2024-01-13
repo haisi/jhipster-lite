@@ -53,6 +53,7 @@ spring_boot() {
   "java-base" \
   "checkstyle" \
   "protobuf" \
+  "protobuf-backwards-compatibility-check" \
   "jacoco-check-min-coverage" \
   "spring-boot" \
   "logs-spy"

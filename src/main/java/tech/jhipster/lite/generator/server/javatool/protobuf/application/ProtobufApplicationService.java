@@ -14,7 +14,11 @@ public class ProtobufApplicationService {
     factory = new ProtobufModuleFactory();
   }
 
-  public JHipsterModule buildModule(JHipsterModuleProperties properties) {
-    return factory.buildModule(properties);
+  public JHipsterModule buildProtobufModule(JHipsterModuleProperties properties) {
+    return factory.buildProtobufModule(properties);
+  }
+
+  public JHipsterModule buildProtobufBackwardsCompatibilityCheckModule(JHipsterModuleProperties properties) {
+    return factory.buildProtobufBackwardsCompatibilityCheckModule(properties);
   }
 }

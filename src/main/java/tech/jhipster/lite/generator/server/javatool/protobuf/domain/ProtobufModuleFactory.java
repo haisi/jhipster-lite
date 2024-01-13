@@ -23,7 +23,7 @@ public class ProtobufModuleFactory {
   private static final VersionSlug PROTOBUF_VERSION_SLUG = versionSlug("protobuf");
   private static final GroupId PROTOBUF_GROUPID = groupId("com.google.protobuf");
 
-  public JHipsterModule buildModule(JHipsterModuleProperties properties) {
+  public JHipsterModule buildProtobufModule(JHipsterModuleProperties properties) {
     Assert.notNull("properties", properties);
 
     JHipsterDestination mainDestination = toSrcMainJava().append(properties.packagePath()).append(PROTOBUF_PACKAGE);
@@ -52,8 +52,6 @@ public class ProtobufModuleFactory {
       .mavenPlugins()
         .pluginManagement(protobufMavenPluginManagement())
         .plugin(protobufMavenPluginBuilder().build())
-        .pluginManagement(protoBackwardsCompatibilityMavenPluginManagement())
-        .plugin(protoBackwardsCompatibilityMavenPluginBuilder().build())
         .and()
       .mavenBuildExtensions()
         .addExtension(groupId("kr.motd.maven"), artifactId("os-maven-plugin"), versionSlug("os-maven-plugin"))
@@ -96,6 +94,17 @@ public class ProtobufModuleFactory {
 
   private MavenPluginOptionalBuilder protobufMavenPluginBuilder() {
     return javaBuildPlugin().groupId("org.xolstice.maven.plugins").artifactId("protobuf-maven-plugin");
+  }
+
+  public JHipsterModule buildProtobufBackwardsCompatibilityCheckModule(JHipsterModuleProperties properties) {
+    //@formatter:off
+    return moduleBuilder(properties)
+      .mavenPlugins()
+        .pluginManagement(protoBackwardsCompatibilityMavenPluginManagement())
+        .plugin(protoBackwardsCompatibilityMavenPluginBuilder().build())
+        .and()
+      .build();
+    //@formatter:on
   }
 
   private MavenPlugin protoBackwardsCompatibilityMavenPluginManagement() {

@@ -81,6 +81,7 @@ public enum JHLiteModuleSlug implements JHipsterModuleSlugFactory {
   POSTGRESQL("postgresql"),
   PRETTIER("prettier"),
   PROTOBUF("protobuf"),
+  PROTOBUF_BACKWARDS_COMPATIBILITY_CHECK("protobuf-backwards-compatibility-check"),
   REACT_CORE("react-core"),
   REACT_JWT("react-jwt"),
   REST_PAGINATION("rest-pagination"),
