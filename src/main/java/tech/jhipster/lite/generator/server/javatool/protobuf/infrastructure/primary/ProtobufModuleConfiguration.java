@@ -31,7 +31,9 @@ class ProtobufModuleConfiguration {
       .slug(JHLiteModuleSlug.PROTOBUF_BACKWARDS_COMPATIBILITY_CHECK)
       .propertiesDefinition(JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().build())
       .apiDoc("Java", "Add protobuf backwards compatibility check")
-      .organization(JHipsterModuleOrganization.builder().addDependency(JHLiteModuleSlug.PROTOBUF).build())
+      .organization(
+        JHipsterModuleOrganization.builder().addDependency(JHLiteModuleSlug.PROTOBUF).addDependency(JHLiteModuleSlug.MAVEN_JAVA).build()
+      )
       .tags("server", "protobuf")
       .factory(protobuf::buildProtobufBackwardsCompatibilityCheckModule);
   }
