@@ -19,7 +19,13 @@ public record RegexNeedleAfterReplacer(ReplacementCondition condition, Pattern p
   @Override
   public BiFunction<String, String, String> replacement() {
     return (content, replacement) ->
-      linePattern().matcher(content).replaceAll(result -> result.group() + JHipsterModule.LINE_BREAK + replacement);
+      linePattern()
+        .matcher(content)
+        .replaceAll(result -> result.group() + JHipsterModule.LINE_BREAK + escapeSpecialCharacters(replacement));
+  }
+
+  private String escapeSpecialCharacters(String replacement) {
+    return replacement.replace("$", "\\$");
   }
 
   private Pattern linePattern() {
